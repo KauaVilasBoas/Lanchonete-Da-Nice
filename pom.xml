@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>restaurante-da-Nice</artifactId>
+    <artifactId>lanchonete-da-Nice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>restaurante-da-Nice</name>
     <description>restaurante-da-Nice</description>

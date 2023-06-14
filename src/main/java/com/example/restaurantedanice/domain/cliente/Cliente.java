@@ -27,4 +27,16 @@ public class Cliente {
         this.telefone = dados.telefone();
         this.cpf = dados.cpf();
     }
+
+    public void atualizarDados(DadosAtualizacaoCliente dados) {
+
+        if (dados.nome()!=null){
+            this.nome = dados.nome();
+        }
+        if (dados.telefone()!=null){
+            this.telefone = dados.telefone();
+        }
+
+    }
 }
+
