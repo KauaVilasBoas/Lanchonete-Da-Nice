@@ -31,7 +31,7 @@ public class ComidaController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemComida>> getAll(@PageableDefault(size = 10, sort ={"nome"}) Pageable pageable){
+    public ResponseEntity<Page<DadosListagemComida>> getAll(@PageableDefault(size = 10, sort ={"titulo"}) Pageable pageable){
 
         var page = repository.findAll(pageable).map(DadosListagemComida::new);
         return ResponseEntity.ok(page);
@@ -47,6 +47,7 @@ public class ComidaController {
     }
 
     @PutMapping
+    @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoComida dados){
         var comida = repository.getReferenceById(dados.id());
         comida.atualizarDados(dados);
