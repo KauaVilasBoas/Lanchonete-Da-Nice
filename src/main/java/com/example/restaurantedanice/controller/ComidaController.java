@@ -1,6 +1,10 @@
 package com.example.restaurantedanice.controller;
 
-import com.example.restaurantedanice.domain.comida.*;
+import com.example.restaurantedanice.domain.comida.DadosAtualizacaoComida;
+import com.example.restaurantedanice.domain.comida.DadosCadastroComida;
+import com.example.restaurantedanice.domain.comida.DadosDetalhamentoComida;
+import com.example.restaurantedanice.domain.comida.DadosListagemComida;
+import com.example.restaurantedanice.service.ComidaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,48 +19,41 @@ import org.springframework.web.bind.annotation.*;
 public class ComidaController {
 
     @Autowired
-    private ComidaRepository repository;
+    private ComidaService service;
 
     @PostMapping
-    @Transactional
-    public ResponseEntity cadastro(@RequestBody @Valid DadosCadastroComida dados){
+    public ResponseEntity cadastro(@RequestBody @Valid DadosCadastroComida dados) {
 
-        var comida = new Comida(dados);
-
-        repository.save(comida);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(new DadosDetalhamentoComida(comida));
+        var dadosDetalhamentoComida = service.cadastrarComida(dados);
+        return ResponseEntity.status(HttpStatus.CREATED).body(dadosDetalhamentoComida);
 
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemComida>> getAll(@PageableDefault(size = 10, sort ={"titulo"}) Pageable pageable){
+    public ResponseEntity<Page<DadosListagemComida>> getAll(@PageableDefault(size = 10, sort = {"titulo"}) Pageable pageable) {
 
-        var page = repository.findAll(pageable).map(DadosListagemComida::new);
+        var page = service.listarComidas(pageable);
         return ResponseEntity.ok(page);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity detalhar(@PathVariable Long id){
+    public ResponseEntity detalhar(@PathVariable Long id) {
 
-        var comida  = repository.getReferenceById(id);
-        return ResponseEntity.ok(new DadosDetalhamentoComida(comida));
+        var detalhamentoComida = service.detalharComida(id);
+        return ResponseEntity.ok(detalhamentoComida);
 
     }
 
     @PutMapping
-    @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoComida dados){
-        var comida = repository.getReferenceById(dados.id());
-        comida.atualizarDados(dados);
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoComida dados) {
+        service.atualizarComida(dados);
         return ResponseEntity.ok("Dados atualizados!");
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity excluir(@PathVariable Long id){
-        var comida = repository.getReferenceById(id);
-        repository.delete(comida);
+    public ResponseEntity excluir(@PathVariable Long id) {
+        service.excluirComida(id);
         return ResponseEntity.noContent().build();
     }
 

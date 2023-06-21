@@ -1,6 +1,7 @@
 package com.example.restaurantedanice.controller;
 
 import com.example.restaurantedanice.domain.cliente.*;
+import com.example.restaurantedanice.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,50 +18,42 @@ import org.springframework.web.bind.annotation.*;
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteService service;
 
     @PostMapping
-    @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroCliente dados){
 
-        var cliente = new Cliente(dados);
+        var dadosDetalhamentoCliente = service.cadastrarCliente(dados);
+        return ResponseEntity.status(HttpStatus.CREATED).body(dadosDetalhamentoCliente);
 
-        clienteRepository.save(cliente);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(new DadosDetalhamentoCliente(cliente));
     }
 
     @GetMapping
     public ResponseEntity<Page<DadosListagemCliente>> getAll(@PageableDefault(size = 10, sort ={"nome"}) Pageable pageable){
-        var page = clienteRepository.findAll(pageable).map(DadosListagemCliente::new);
+        var page = service.listarClientes(pageable);
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity detalhar(@PathVariable Long id){
-        var cliente = clienteRepository.getReferenceById(id);
-        return ResponseEntity.ok(new DadosDetalhamentoCliente(cliente));
+        var dadosDetalhamentoCliente = service.detalharCliente(id);
+        return ResponseEntity.ok(dadosDetalhamentoCliente);
     }
 
     @PutMapping
-    @Transactional
     public ResponseEntity editar(@RequestBody DadosAtualizacaoCliente dados){
 
-        var cliente = clienteRepository.getReferenceById(dados.id());
-        cliente.atualizarDados(dados);
+        service.editarCliente(dados);
         return ResponseEntity.ok("Dados atualizados!");
 
     }
 
     @DeleteMapping("/{id}")
-    @Transactional
     public ResponseEntity excluir(@PathVariable Long id){
 
-        var cliente = clienteRepository.getReferenceById(id);
-
-        clienteRepository.delete(cliente);
-
+        service.excluirCliente(id);
         return ResponseEntity.noContent().build();
+
     }
 
 }
