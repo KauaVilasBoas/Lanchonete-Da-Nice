@@ -23,8 +23,7 @@ public class Comida {
     private String titulo;
     private String imagem;
     private Double preco;
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Pedido> pedido;
 
     public Comida(DadosCadastroComida dados){

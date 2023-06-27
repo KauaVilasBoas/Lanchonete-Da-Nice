@@ -68,4 +68,11 @@ public class PedidoService {
         return page;
     }
 
+    public List<Comida> listarComidasPeloPedido(Long id){
+
+        var comidas = pedidoRepository.findComidasByPedidoId(id);
+
+        return comidas;
+    }
+
 }

@@ -24,7 +24,7 @@ public class Pedido {
     private Long id;
     @ManyToOne
     private Cliente cliente;
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "pedido", cascade = CascadeType.REMOVE)
     private List<Comida> comidas;
     private LocalDateTime data_hora;
     @Enumerated(EnumType.STRING)

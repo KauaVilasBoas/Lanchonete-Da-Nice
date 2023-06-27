@@ -36,6 +36,14 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.OK).body(page);
     }
 
+    @GetMapping("/listarComidasDoPedido/{id}")
+    public ResponseEntity listarComidasPeloPedido(@PathVariable Long id){
+
+        var lista = service.listarComidasPeloPedido(id);
+        return ResponseEntity.ok(lista);
+
+    }
+
 //    @GetMapping("/filtrar/{status}")
 //    public ResponseEntity filtrarPorStatus(@PathVariable String string){
 //        service.filtrarPorStatus(string);
@@ -47,5 +55,7 @@ public class PedidoController {
         service.excluirPedido(id);
         return ResponseEntity.noContent().build();
     }
+
+
 
 }
