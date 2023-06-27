@@ -3,6 +3,7 @@ package com.example.restaurantedanice.service;
 import com.example.restaurantedanice.domain.cliente.ClienteRepository;
 import com.example.restaurantedanice.domain.comida.Comida;
 import com.example.restaurantedanice.domain.comida.ComidaRepository;
+import com.example.restaurantedanice.domain.comida.DadosListagemComida;
 import com.example.restaurantedanice.domain.pedido.DadosCadastroPedido;
 import com.example.restaurantedanice.domain.pedido.DadosListagemPedido;
 import com.example.restaurantedanice.domain.pedido.Pedido;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class PedidoService {
@@ -65,4 +67,5 @@ public class PedidoService {
         var page = pedidoRepository.findAll(pageable).map(DadosListagemPedido::new);
         return page;
     }
+
 }

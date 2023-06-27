@@ -8,6 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Table(name = "comidas")
 @Entity(name = "Comida")
 @Getter
@@ -21,6 +23,9 @@ public class Comida {
     private String titulo;
     private String imagem;
     private Double preco;
+
+    @ManyToMany
+    private List<Pedido> pedido;
 
     public Comida(DadosCadastroComida dados){
         this.titulo = dados.titulo();
