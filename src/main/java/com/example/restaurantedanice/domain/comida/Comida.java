@@ -1,6 +1,7 @@
 package com.example.restaurantedanice.domain.comida;
 
 import com.example.restaurantedanice.domain.cliente.DadosCadastroCliente;
+import com.example.restaurantedanice.domain.pedido.Pedido;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
