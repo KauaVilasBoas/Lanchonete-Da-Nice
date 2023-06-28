@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ComidaRepository extends JpaRepository<Comida, Long> {
 
-    List<Comida> findAllByPedido(Pedido pedido);
+    // List<Comida> findAllByPedido(Pedido pedido);
 
 }

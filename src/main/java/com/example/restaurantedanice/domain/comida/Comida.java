@@ -23,8 +23,6 @@ public class Comida {
     private String titulo;
     private String imagem;
     private Double preco;
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Pedido> pedido;
 
     public Comida(DadosCadastroComida dados){
         this.titulo = dados.titulo();
