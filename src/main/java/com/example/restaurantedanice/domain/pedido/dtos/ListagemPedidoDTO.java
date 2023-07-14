@@ -14,13 +14,14 @@ public record ListagemPedidoDTO(
         LocalDateTime data_hora,
         List<Comida> comidaList,
         Status status,
-        boolean ativo
+        boolean ativo,
+        Double precoTotal
 
 ) {
 
 
     public ListagemPedidoDTO(Pedido pedido) {
-        this(pedido.getId(), pedido.getCliente().getNome(), pedido.getData_hora(), pedido.getComidas(), pedido.getStatus(), pedido.isAtivo());
+        this(pedido.getId(), pedido.getCliente().getNome(), pedido.getData_hora(), pedido.getComidas(), pedido.getStatus(), pedido.isAtivo(), pedido.getPrecoTotal());
     }
 
 }

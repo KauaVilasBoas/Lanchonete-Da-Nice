@@ -28,6 +28,7 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private Status status;
     private boolean ativo;
+    private Double precoTotal;
 
     public Pedido(Cliente cliente, List<Comida> comidasList) {
 
@@ -36,6 +37,7 @@ public class Pedido {
         this.data_hora = LocalDateTime.now();
         this.status = Status.PREPARANDO;
         this.ativo = true;
+        this.precoTotal = comidasList.stream().mapToDouble(Comida::getPreco).sum();
 
     }
 
