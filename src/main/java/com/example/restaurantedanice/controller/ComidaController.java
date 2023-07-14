@@ -1,16 +1,14 @@
 package com.example.restaurantedanice.controller;
 
-import com.example.restaurantedanice.domain.comida.DadosAtualizacaoComida;
-import com.example.restaurantedanice.domain.comida.DadosCadastroComida;
-import com.example.restaurantedanice.domain.comida.DadosDetalhamentoComida;
-import com.example.restaurantedanice.domain.comida.DadosListagemComida;
+import com.example.restaurantedanice.domain.comida.dtos.AtualizacaoComidaDTO;
+import com.example.restaurantedanice.domain.comida.dtos.CadastroComidaDTO;
+import com.example.restaurantedanice.domain.comida.dtos.ListagemComidaDTO;
 import com.example.restaurantedanice.service.ComidaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -23,7 +21,7 @@ public class ComidaController {
     private ComidaService service;
 
     @PostMapping
-    public ResponseEntity cadastro(@RequestBody @Valid DadosCadastroComida dados, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity cadastro(@RequestBody @Valid CadastroComidaDTO dados, UriComponentsBuilder uriBuilder) {
 
         var dadosDetalhamentoComida = service.cadastrarComida(dados);
         var uri = uriBuilder.path("/comida/{id}").buildAndExpand(dadosDetalhamentoComida.id()).toUri();
@@ -32,7 +30,7 @@ public class ComidaController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemComida>> getAll(@PageableDefault(size = 10, sort = {"titulo"}) Pageable pageable) {
+    public ResponseEntity<Page<ListagemComidaDTO>> getAll(@PageableDefault(size = 10, sort = {"titulo"}) Pageable pageable) {
 
         var page = service.listarComidas(pageable);
         return ResponseEntity.ok(page);
@@ -48,7 +46,7 @@ public class ComidaController {
     }
 
     @PutMapping
-    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoComida dados) {
+    public ResponseEntity atualizar(@RequestBody @Valid AtualizacaoComidaDTO dados) {
         service.atualizarComida(dados);
         return ResponseEntity.ok("Dados atualizados!");
     }

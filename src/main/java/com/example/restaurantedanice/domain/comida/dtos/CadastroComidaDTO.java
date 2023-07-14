@@ -1,9 +1,9 @@
-package com.example.restaurantedanice.domain.comida;
+package com.example.restaurantedanice.domain.comida.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record DadosCadastroComida(
+public record CadastroComidaDTO(
         @NotBlank(message = "Titulo é obrigatório")
         String titulo,
         @NotBlank(message = "Imagem é obrigatório")

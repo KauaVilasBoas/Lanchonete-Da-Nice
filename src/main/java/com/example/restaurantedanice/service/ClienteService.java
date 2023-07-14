@@ -1,6 +1,10 @@
 package com.example.restaurantedanice.service;
 
 import com.example.restaurantedanice.domain.cliente.*;
+import com.example.restaurantedanice.domain.cliente.dtos.AtualizacaoClienteDTO;
+import com.example.restaurantedanice.domain.cliente.dtos.CadastroClienteDTO;
+import com.example.restaurantedanice.domain.cliente.dtos.DetalhamentoClienteDTO;
+import com.example.restaurantedanice.domain.cliente.dtos.ListagemClienteDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,27 +19,27 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public DadosDetalhamentoCliente cadastrarCliente(DadosCadastroCliente dados){
+    public DetalhamentoClienteDTO cadastrarCliente(CadastroClienteDTO dados){
 
         var cliente = new Cliente(dados);
         clienteRepository.save(cliente);
-        return new DadosDetalhamentoCliente(cliente);
+        return new DetalhamentoClienteDTO(cliente);
 
     }
 
-    public Page<DadosListagemCliente> listarClientes(Pageable pageable){
-        var page = clienteRepository.findAll(pageable).map(DadosListagemCliente::new);
+    public Page<ListagemClienteDTO> listarClientes(Pageable pageable){
+        var page = clienteRepository.findAll(pageable).map(ListagemClienteDTO::new);
         return page;
     }
 
-    public DadosDetalhamentoCliente detalharCliente(Long id){
+    public DetalhamentoClienteDTO detalharCliente(Long id){
 
         var cliente = clienteRepository.getReferenceById(id);
-        return new DadosDetalhamentoCliente(cliente);
+        return new DetalhamentoClienteDTO(cliente);
 
     }
 
-    public void editarCliente(DadosAtualizacaoCliente dados) throws EntityNotFoundException {
+    public void editarCliente(AtualizacaoClienteDTO dados) throws EntityNotFoundException {
 
         var cliente = clienteRepository.getReferenceById(dados.id());
         if (cliente.equals(null)) throw new EntityNotFoundException();

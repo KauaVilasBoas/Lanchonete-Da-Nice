@@ -1,5 +1,7 @@
 package com.example.restaurantedanice.domain.cliente;
 
+import com.example.restaurantedanice.domain.cliente.dtos.AtualizacaoClienteDTO;
+import com.example.restaurantedanice.domain.cliente.dtos.CadastroClienteDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -22,14 +24,14 @@ public class Cliente {
     private String telefone;
     private String cpf;
 
-    public Cliente(DadosCadastroCliente dados) {
+    public Cliente(CadastroClienteDTO dados) {
         this.nome = dados.nome();
         this.email = dados.email();
         this.telefone = dados.telefone();
         this.cpf = dados.cpf();
     }
 
-    public void atualizarDados(DadosAtualizacaoCliente dados) {
+    public void atualizarDados(AtualizacaoClienteDTO dados) {
 
         if (dados.nome()!=null){
             this.nome = dados.nome();

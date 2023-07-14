@@ -4,6 +4,10 @@ import com.example.restaurantedanice.domain.cliente.ClienteRepository;
 import com.example.restaurantedanice.domain.comida.Comida;
 import com.example.restaurantedanice.domain.comida.ComidaRepository;
 import com.example.restaurantedanice.domain.pedido.*;
+import com.example.restaurantedanice.domain.pedido.dtos.AtualizacaoPedidoDTO;
+import com.example.restaurantedanice.domain.pedido.dtos.CadastroPedidoDTO;
+import com.example.restaurantedanice.domain.pedido.dtos.DetalhamentoPedidoDTO;
+import com.example.restaurantedanice.domain.pedido.dtos.ListagemPedidoDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +31,7 @@ public class PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    public DadosDetalhamentoPedido novoPedido(DadosCadastroPedido dados) throws EntityNotFoundException {
+    public DetalhamentoPedidoDTO novoPedido(CadastroPedidoDTO dados) throws EntityNotFoundException {
 
         var cliente = clienteRepository.getReferenceById(dados.idCliente());
 
@@ -47,7 +51,7 @@ public class PedidoService {
         var pedido = new Pedido(cliente, comidaList);
         pedidoRepository.save(pedido);
 
-        return new DadosDetalhamentoPedido(pedido);
+        return new DetalhamentoPedidoDTO(pedido);
     }
 
     public void excluirPedido(Long id) throws EntityNotFoundException {
@@ -60,8 +64,8 @@ public class PedidoService {
 
     }
 
-    public Page<DadosListagemPedido> listarPedidos(Pageable pageable) {
-        var page = pedidoRepository.findAll(pageable).map(DadosListagemPedido::new);
+    public Page<ListagemPedidoDTO> listarPedidos(Pageable pageable) {
+        var page = pedidoRepository.findAll(pageable).map(ListagemPedidoDTO::new);
         return page;
     }
 
@@ -86,7 +90,7 @@ public class PedidoService {
 
     }
 
-    public void atualizarPedido(DadosAtualizacaoPedido dados) {
+    public void atualizarPedido(AtualizacaoPedidoDTO dados) {
 
         var pedido = pedidoRepository.getReferenceById(dados.id());
 
@@ -105,8 +109,8 @@ public class PedidoService {
 
     }
 
-    public DadosDetalhamentoPedido detalharPedido(Long id) {
+    public DetalhamentoPedidoDTO detalharPedido(Long id) {
         var pedido = pedidoRepository.getReferenceById(id);
-        return new DadosDetalhamentoPedido(pedido);
+        return new DetalhamentoPedidoDTO(pedido);
     }
 }

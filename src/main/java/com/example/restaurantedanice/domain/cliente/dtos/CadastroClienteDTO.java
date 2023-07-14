@@ -1,9 +1,9 @@
-package com.example.restaurantedanice.domain.cliente;
+package com.example.restaurantedanice.domain.cliente.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public record DadosCadastroCliente(
+public record CadastroClienteDTO(
         @NotBlank(message = "Nome é obrigatório")
         String nome,
         @NotBlank(message = "Email é obrigatório, ou o email já é existente")

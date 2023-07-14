@@ -1,6 +1,10 @@
 package com.example.restaurantedanice.service;
 
 import com.example.restaurantedanice.domain.comida.*;
+import com.example.restaurantedanice.domain.comida.dtos.AtualizacaoComidaDTO;
+import com.example.restaurantedanice.domain.comida.dtos.CadastroComidaDTO;
+import com.example.restaurantedanice.domain.comida.dtos.DetalhamentoComidaDTO;
+import com.example.restaurantedanice.domain.comida.dtos.ListagemComidaDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,31 +21,31 @@ public class ComidaService {
 
     //C.R.U.D
 
-    public DadosDetalhamentoComida cadastrarComida(DadosCadastroComida dados){
+    public DetalhamentoComidaDTO cadastrarComida(CadastroComidaDTO dados){
 
         var comida = new Comida(dados);
         repository.save(comida);
-        var dadosDetalhamentoComida = new DadosDetalhamentoComida(comida);
+        var dadosDetalhamentoComida = new DetalhamentoComidaDTO(comida);
         return dadosDetalhamentoComida;
 
     }
 
-    public Page<DadosListagemComida> listarComidas(Pageable pageable){
+    public Page<ListagemComidaDTO> listarComidas(Pageable pageable){
 
-        var page = repository.findAll(pageable).map(DadosListagemComida::new);
+        var page = repository.findAll(pageable).map(ListagemComidaDTO::new);
         return page;
 
     }
 
-    public DadosDetalhamentoComida detalharComida(Long id){
+    public DetalhamentoComidaDTO detalharComida(Long id){
 
         var comida = repository.getReferenceById(id);
-        var dadosDetalhamentoComida = new DadosDetalhamentoComida(comida);
+        var dadosDetalhamentoComida = new DetalhamentoComidaDTO(comida);
         return dadosDetalhamentoComida;
 
     }
 
-    public void atualizarComida(DadosAtualizacaoComida dados){
+    public void atualizarComida(AtualizacaoComidaDTO dados){
 
         var comida = repository.getReferenceById(dados.id());
         comida.atualizarDados(dados);

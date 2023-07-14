@@ -1,6 +1,10 @@
 package com.example.restaurantedanice.controller;
 
 import com.example.restaurantedanice.domain.pedido.*;
+import com.example.restaurantedanice.domain.pedido.dtos.AtualizacaoPedidoDTO;
+import com.example.restaurantedanice.domain.pedido.dtos.CadastroPedidoDTO;
+import com.example.restaurantedanice.domain.pedido.dtos.DetalhamentoPedidoDTO;
+import com.example.restaurantedanice.domain.pedido.dtos.ListagemPedidoDTO;
 import com.example.restaurantedanice.service.PedidoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +24,7 @@ public class PedidoController {
     private PedidoService service;
 
     @PostMapping
-    public ResponseEntity novoPedido(@RequestBody @Valid DadosCadastroPedido dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity novoPedido(@RequestBody @Valid CadastroPedidoDTO dados, UriComponentsBuilder uriBuilder){
 
         var dadosDetalhamentoPedido = service.novoPedido(dados);
         var uri = uriBuilder.path("pedido/{id}").buildAndExpand(dadosDetalhamentoPedido.id()).toUri();
@@ -29,7 +33,7 @@ public class PedidoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemPedido>> listarPedidos(@PageableDefault(size = 10) Pageable pageable){
+    public ResponseEntity<Page<ListagemPedidoDTO>> listarPedidos(@PageableDefault(size = 10) Pageable pageable){
         var page = service.listarPedidos(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(page);
     }
@@ -51,7 +55,7 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DadosDetalhamentoPedido> detalharPedido(@PathVariable Long id){
+    public ResponseEntity<DetalhamentoPedidoDTO> detalharPedido(@PathVariable Long id){
 
         var dadosDetalhamentoPedido = service.detalharPedido(id);
         return ResponseEntity.ok(dadosDetalhamentoPedido);
@@ -59,7 +63,7 @@ public class PedidoController {
     }
 
     @PutMapping
-    public ResponseEntity atualizarPedido(@RequestBody @Valid DadosAtualizacaoPedido dados){
+    public ResponseEntity atualizarPedido(@RequestBody @Valid AtualizacaoPedidoDTO dados){
         service.atualizarPedido(dados);
         return ResponseEntity.ok("Pedido atualizado");
     }

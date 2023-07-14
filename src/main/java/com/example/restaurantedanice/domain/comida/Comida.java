@@ -1,5 +1,7 @@
 package com.example.restaurantedanice.domain.comida;
 
+import com.example.restaurantedanice.domain.comida.dtos.AtualizacaoComidaDTO;
+import com.example.restaurantedanice.domain.comida.dtos.CadastroComidaDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -21,13 +23,13 @@ public class Comida {
     private String imagem;
     private Double preco;
 
-    public Comida(DadosCadastroComida dados) {
+    public Comida(CadastroComidaDTO dados) {
         this.titulo = dados.titulo();
         this.imagem = dados.imagem();
         this.preco = dados.preco();
     }
 
-    public void atualizarDados(DadosAtualizacaoComida dados) {
+    public void atualizarDados(AtualizacaoComidaDTO dados) {
 
         if (dados.titulo() != null) {
             this.titulo = dados.titulo();

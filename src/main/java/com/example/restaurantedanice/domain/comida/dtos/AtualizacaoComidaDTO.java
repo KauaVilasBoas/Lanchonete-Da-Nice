@@ -1,8 +1,8 @@
-package com.example.restaurantedanice.domain.comida;
+package com.example.restaurantedanice.domain.comida.dtos;
 
 import jakarta.validation.constraints.NotNull;
 
-public record DadosAtualizacaoComida(
+public record AtualizacaoComidaDTO(
 
         @NotNull
         Long id,
