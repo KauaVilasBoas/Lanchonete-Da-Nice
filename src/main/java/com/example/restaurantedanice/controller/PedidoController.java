@@ -54,7 +54,7 @@ public class PedidoController {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/detalhar/{id}")
     public ResponseEntity<DetalhamentoPedidoDTO> detalharPedido(@PathVariable Long id){
 
         var dadosDetalhamentoPedido = service.detalharPedido(id);

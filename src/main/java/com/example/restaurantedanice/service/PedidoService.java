@@ -107,6 +107,7 @@ public class PedidoService {
         }
 
         pedido.setComidas(listaComidas);
+        pedido.setPrecoTotal(listaComidas.stream().mapToDouble(Comida::getPreco).sum());
 
     }
 
