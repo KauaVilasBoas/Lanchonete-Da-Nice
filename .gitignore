@@ -33,5 +33,5 @@ build/
 .vscode/
 
 ### Git ###
-/hooks
-/info
+hooks/
+info/
