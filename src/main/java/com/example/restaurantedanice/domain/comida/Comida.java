@@ -3,14 +3,12 @@ package com.example.restaurantedanice.domain.comida;
 import com.example.restaurantedanice.domain.comida.dtos.AtualizacaoComidaDTO;
 import com.example.restaurantedanice.domain.comida.dtos.CadastroComidaDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name = "comidas")
 @Entity(name = "Comida")
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -22,11 +20,13 @@ public class Comida {
     private String titulo;
     private String imagem;
     private Double preco;
+    private boolean ativo;
 
     public Comida(CadastroComidaDTO dados) {
         this.titulo = dados.titulo();
         this.imagem = dados.imagem();
         this.preco = dados.preco();
+        this.ativo = true;
     }
 
     public void atualizarDados(AtualizacaoComidaDTO dados) {

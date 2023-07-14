@@ -28,7 +28,7 @@ public class ClienteService {
     }
 
     public Page<ListagemClienteDTO> listarClientes(Pageable pageable){
-        var page = clienteRepository.findAll(pageable).map(ListagemClienteDTO::new);
+        var page = clienteRepository.findAllByAtivoTrue(pageable).map(ListagemClienteDTO::new);
         return page;
     }
 
@@ -50,7 +50,7 @@ public class ClienteService {
     public void excluirCliente(Long id) throws EntityNotFoundException {
         var cliente = clienteRepository.getReferenceById(id);
         if (cliente.equals(null)) throw new EntityNotFoundException();
-        clienteRepository.delete(cliente);
+        cliente.setAtivo(false);
     }
 
 

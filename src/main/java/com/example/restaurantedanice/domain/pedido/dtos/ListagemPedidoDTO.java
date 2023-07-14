@@ -13,13 +13,14 @@ public record ListagemPedidoDTO(
         String nomeCliente,
         LocalDateTime data_hora,
         List<Comida> comidaList,
-        Status status
+        Status status,
+        boolean ativo
 
 ) {
 
 
     public ListagemPedidoDTO(Pedido pedido) {
-        this(pedido.getId(), pedido.getCliente().getNome(), pedido.getData_hora(), pedido.getComidas(), pedido.getStatus());
+        this(pedido.getId(), pedido.getCliente().getNome(), pedido.getData_hora(), pedido.getComidas(), pedido.getStatus(), pedido.isAtivo());
     }
 
 }

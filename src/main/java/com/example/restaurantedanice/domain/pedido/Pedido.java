@@ -27,6 +27,7 @@ public class Pedido {
     private LocalDateTime data_hora;
     @Enumerated(EnumType.STRING)
     private Status status;
+    private boolean ativo;
 
     public Pedido(Cliente cliente, List<Comida> comidasList) {
 
@@ -34,6 +35,7 @@ public class Pedido {
         this.comidas = comidasList;
         this.data_hora = LocalDateTime.now();
         this.status = Status.PREPARANDO;
+        this.ativo = true;
 
     }
 

@@ -32,7 +32,7 @@ public class ComidaService {
 
     public Page<ListagemComidaDTO> listarComidas(Pageable pageable){
 
-        var page = repository.findAll(pageable).map(ListagemComidaDTO::new);
+        var page = repository.findAllByAtivoTrue(pageable).map(ListagemComidaDTO::new);
         return page;
 
     }
@@ -57,7 +57,7 @@ public class ComidaService {
         if (comida.equals(null)){
             throw new EntityNotFoundException();
         }
-        repository.delete(comida);
+        comida.setAtivo(false);
     }
 
 

@@ -60,7 +60,8 @@ public class PedidoService {
 
         if (pedido.equals(null)) throw new EntityNotFoundException();
 
-        pedidoRepository.delete(pedido);
+        pedido.setAtivo(false);
+        pedido.setStatus(Status.CANCELADO);
 
     }
 

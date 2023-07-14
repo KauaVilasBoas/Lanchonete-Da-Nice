@@ -14,7 +14,8 @@ public record DetalhamentoPedidoDTO(
         DetalhamentoClienteDTO cliente,
         List<DetalhamentoComidaDTO> comidas,
         LocalDateTime data_hora,
-        Status status) {
+        Status status,
+        boolean ativo) {
 
     public DetalhamentoPedidoDTO(Pedido pedido) {
         this(
@@ -22,7 +23,8 @@ public record DetalhamentoPedidoDTO(
                 new DetalhamentoClienteDTO(pedido.getCliente()),
                 pedido.getComidas().stream().map(comida -> new DetalhamentoComidaDTO(comida)).collect(Collectors.toList()),
                 pedido.getData_hora(),
-                pedido.getStatus());
+                pedido.getStatus(),
+                pedido.isAtivo());
     }
 
 }
