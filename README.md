@@ -41,7 +41,7 @@
 <h2 id="configurações">⚙️Configurações</h2>
   <p>Antes de executar o projeto, é necessário realizar as seguintes configurações:</p>
   <ol>
-    <li>Configurar o banco de dados PostgreSQL e criar o banco de dados "contas".</li>
+    <li>Configurar o banco de dados PostgreSQL e criar o banco de dados.</li>
     <li>Modificar as informações de conexão com o banco de dados (URL, usuário e senha) no pacote resources/application.properties</li>
   </ol>
 
@@ -67,7 +67,7 @@
 | /cliente/{id}        |   *  | DELETE   |
 
 <details>
-    <summary>CADASTRAR NOVO CLIENTE - /cliente  </summary>
+    <summary>CADASTRAR NOVO CLIENTE - /clientes </summary>
     
   ### Descrição
   
@@ -79,7 +79,7 @@
   
   ### Exemplo de Requisição
   
-  - POST -  /cliente
+  - POST - /clientes
   - HTTP/1.1
   - Host: localhost:8080
   - Content-Type: application/json
@@ -143,7 +143,7 @@
   </details>
 
   <details>
-    <summary> LISTAR CLIENTES - /cliente </summary>
+    <summary> LISTAR CLIENTES - /clientes </summary>
     
   ### Descrição
   
@@ -222,7 +222,7 @@
   
   ### Exemplo de Requisição
   
-  - GET - /cliente
+  - PUT - /cliente
   - HTTP/1.1
   - Host: localhost:8080
 
@@ -269,11 +269,11 @@
 
   |   Endpoints   |  Parameters  |    Verb    |
 | :---         |     :---:      |          ---: |
-| /comida       |   *  |   POST    |
-| /comida  |   *  | GET    |
-| /comida/{id}   |   *  | GET    |
-| /comida       |   *  | PUT   |
-| /comida/{id}        |   *  | DELETE   |
+| /comidas       |   *  |   POST    |
+| /comidas  |   *  | GET    |
+| /comidas/{id}   |   *  | GET    |
+| /comidas       |   *  | PUT   |
+| /comidas/{id}        |   *  | DELETE   |
   
   <details>
     <summary>CADASTRAR UMA NOVA COMIDA AO CARDÁPIO - /comida</summary>
@@ -288,7 +288,7 @@
   
   ### Exemplo de Requisição
   
-  - POST /comida
+  - POST /comidas
   - Host: localhost:8080
     
     ```json
@@ -328,7 +328,7 @@
   
   ### Exemplo de Requisição
   
-  - GET - /comida/6
+  - GET - /comidas/6
   - HTTP/1.1
   - Host: localhost:8080
   
@@ -348,7 +348,7 @@
   </details>
 
   <details>
-    <summary> LISTAR COMIDAS - /comida </summary>
+    <summary> LISTAR COMIDAS - /comidas </summary>
     
   ### Descrição
   
@@ -360,7 +360,7 @@
   
   ### Exemplo de Requisição
   
-  - GET - /comida
+  - GET - /comidas
   - HTTP/1.1
   - Host: localhost:8080
   
@@ -418,7 +418,7 @@
   </details>
   
   <details>
-    <summary>EDITAR COMIDA /comida</summary>
+    <summary>EDITAR COMIDA /comidas</summary>
     
   ### Descrição
   
@@ -450,7 +450,7 @@
   </details>
 
   <details>
-    <summary>DELETAR COMIDA /comida/{id}</summary>
+    <summary>DELETAR COMIDA /comidas/{id}</summary>
     
   ### Descrição
   
@@ -462,7 +462,7 @@
   
   ### Exemplo de Requisição
   
-  - DELETE - /comida/9
+  - DELETE - /comidas/9
   - HTTP/1.1
   - Host: localhost:8080
 
@@ -473,8 +473,267 @@
   
   </details>
 
+ <h3>Pedido</h3>
+
+  |   Endpoints   |  Parameters  |    Verb    |
+| :---         |     :---:      |          ---: |
+| /pedidos       |   *  |   POST    |
+| /pedidos  |   *  | GET    |
+| /pedidos/detalhar/{id}   |   *  | GET    |
+| /pedidos/comidas/{id}   |   *  | GET    |
+| /pedidos/{id}        |   *  | PTCH   |
+| /pedidos       |   *  | PUT   |
+| /pedidos/{id}        |   *  | DELETE   |
+  
+  <details>
+    <summary>CADASTRAR UM NOVO PEDIDO - /pedidos</summary>
+    
+  ### Descrição
+  
+  Cadastra um novo pedido e instacia-o no banco de dados.
+  
+  ### Códigos de Resposta
+  
+  - `201`: CREATED.
+  
+  ### Exemplo de Requisição
+  
+  - POST /comida
+  - Host: localhost:8080
+    
+    ```json
+    {
+	"idCliente":4,
+	"idComidaList":[2,3]
+	}
+    ```
+
+  ### Exemplo de Resposta
+  
+  - HTTP/1.1 201 CREATED
+  - Content-Type: application/json
+      
+  ```json
+    {
+	"id": 5,
+	"cliente": {
+		"id": 4,
+		"nome": "Axel",
+		"email": "axel@rest.com",
+		"telefone": "71999882319",
+		"cpf": "615.897.321-19",
+		"ativo": true
+	},
+	"comidas": [
+		{
+			"id": 2,
+			"titulo": "X-Tudo",
+			"imagem": "https://www.receiteria.com.br/receitas-de-x-tudo/",
+			"preco": 20.0,
+			"ativo": true
+		},
+		{
+			"id": 3,
+			"titulo": "X-Bacon",
+			"imagem": "https://www.recepedia.com/pt-br/receita/carne/230410-x-salada-bacon/",
+			"preco": 16.0,
+			"ativo": true
+		}
+	],
+	"data_hora": "2023-07-14T11:22:27.6859439",
+	"status": "PREPARANDO",
+	"ativo": true,
+	"precoTotal": 36.0
+	}
+  ```
+    
+  </details>
+
+  <details>
+    <summary> DETALHAR PEDIDO - /pedidos/detalhar/{id} </summary>
+    
+  ### Descrição
+  
+  Detalha um pedido contidos no banco de dados de acordo com o seu ID.
+  
+  ### Códigos de Resposta
+  
+  - `200`: OK.
+  
+  ### Exemplo de Requisição
+  
+  - GET - /pedidos/5
+  - HTTP/1.1
+  - Host: localhost:8080
+  
+  ### Exemplo de Resposta
+  
+  - HTTP/1.1 200 OK
+  - Content-Type: application/json
+  ```json
+{
+	"id": 5,
+	"cliente": {
+		"id": 4,
+		"nome": "Axel",
+		"email": "axel@rest.com",
+		"telefone": "71999882319",
+		"cpf": "615.897.321-19",
+		"ativo": true
+	},
+	"comidas": [
+		{
+			"id": 2,
+			"titulo": "X-Tudo",
+			"imagem": "https://www.receiteria.com.br/receitas-de-x-tudo/",
+			"preco": 20.0,
+			"ativo": true
+		},
+		{
+			"id": 3,
+			"titulo": "X-Bacon",
+			"imagem": "https://www.recepedia.com/pt-br/receita/carne/230410-x-salada-bacon/",
+			"preco": 16.0,
+			"ativo": true
+		}
+	],
+	"data_hora": "2023-07-14T11:22:27.685944",
+	"status": "CANCELADO",
+	"ativo": false,
+	"precoTotal": 36.0
+}
+  ```
+  </details>
+
+  <details>
+    <summary> LISTAR ITENS DO CARDÁPIO DE UM PEDIDO - /pedidos/comidas/{id} </summary>
+    
+  ### Descrição
+  
+  Lista todos as comidas de um pedido contido no banco de dados.
+  
+  ### Códigos de Resposta
+  
+  - `200`: OK.
+  
+  ### Exemplo de Requisição
+  
+  - GET - /pedidos/comidas/{id}
+  - HTTP/1.1
+  - Host: localhost:8080
+  
+  ### Exemplo de Resposta
+  
+  - HTTP/1.1 200 OK
+  - Content-Type: application/json
+
+```json
+  [
+	{
+		"id": 2,
+		"titulo": "X-Tudo",
+		"imagem": "https://www.receiteria.com.br/receitas-de-x-tudo/",
+		"preco": 20.0,
+		"ativo": true
+	},
+	{
+		"id": 3,
+		"titulo": "X-Bacon",
+		"imagem": "https://www.recepedia.com/pt-br/receita/carne/230410-x-salada-bacon/",
+		"preco": 16.0,
+		"ativo": true
+	}
+]
+```
+  </details>
+
+<details>
+    <summary> CONCLUIR PEDIDO - /pedidos/{id} </summary>
+    
+  ### Descrição
+  
+  Altera o status do pedido para: "Concluído" de acordo com o seu ID.
+  
+  ### Códigos de Resposta
+  
+  - `200`: OK.
+  
+  ### Exemplo de Requisição
+  
+  - GET - /pedidos/3
+  - HTTP/1.1
+  - Host: localhost:8080
+  
+  ### Exemplo de Resposta
+  
+  - HTTP/1.1 200 OK
+  - Content-Type: application/json
+
+  </details>
+
+  <details>
+    <summary>EDITAR PEDIDO - /pedidos</summary>
+    
+  ### Descrição
+  
+  Edita um pedido contido no banco de dados.
+  
+  ### Códigos de Resposta
+  
+  - `200`: OK.
+  
+  ### Exemplo de Requisição
+  
+  - PUT /pedidos
+  - Host: localhost:8080
+    
+    ```json
+    {
+	"id":5,
+	"idComidaList":[2,4]
+	}
+    ```
+
+  ### Exemplo de Resposta
+  
+  - HTTP/1.1 200 OK
+  - Content-Type: application/json
+      
+  ```json
+   Pedido atualizado
+  ```
+    
+  </details>
+
+  <details>
+    <summary>DELETAR PEDIDO /pedidos/{id}</summary>
+    
+  ### Descrição
+  
+  Deleta um pedido contido no banco de dados de acordo com o seu ID.
+  
+  ### Códigos de Resposta
+  
+  - `204`: NO CONTENT.
+  
+  ### Exemplo de Requisição
+  
+  - DELETE - /pedidos/3
+  - HTTP/1.1
+  - Host: localhost:8080
+
+  ### Exemplo de Resposta
+  
+  - HTTP/1.1 204 NO CONTENT
+  - Content-Type: application/json
+  
+  </details>
+
+
+  
+
   <h2 id="observações">❗Observações</h2>
-  <p>Este projeto é apenas uma demonstração básica de um banco ("netbank") utilizando Spring e Banco de Dados. Para fins de aprendizado e desenvolvimento.</p>
+  <p>Este projeto é apenas uma demonstração básica de uma API de Lanchonete utilizando Spring e Banco de Dados. Para fins de aprendizado e desenvolvimento.</p>
 
   <h2 id="autor">🖐️Autor</h2>
   <p>Kauã Caldeira Vilas Boas</p>
