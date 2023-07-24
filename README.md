@@ -60,11 +60,11 @@
 
 |   Endpoints   |  Parameters  |    Verb    |
 | :---         |     :---:      |          ---: |
-| /cliente       |   *  |   POST    |
-| /cliente  |   *  | GET    |
-| /cliente/{id}   |   *  | GET    |
-| /cliente       |   *  | PUT   |
-| /cliente/{id}        |   *  | DELETE   |
+| /clientes       |   *  |   POST    |
+| /clientes  |   *  | GET    |
+| /clientes/{id}   |   *  | GET    |
+| /clientes       |   *  | PUT   |
+| /clientes/{id}        |   *  | DELETE   |
 
 <details>
     <summary>CADASTRAR NOVO CLIENTE - /clientes </summary>
@@ -110,7 +110,7 @@
   </details>
   
   <details>
-    <summary> DETALHAR CLIENTE - /cliente/{id} </summary>
+    <summary> DETALHAR CLIENTE - /clientes/{id} </summary>
     
   ### Descrição
   
@@ -122,7 +122,7 @@
   
   ### Exemplo de Requisição
   
-  - GET - /cliente/7
+  - GET - /clientes/7
   - HTTP/1.1
   - Host: localhost:8080
   
@@ -155,7 +155,7 @@
   
   ### Exemplo de Requisição
   
-  - GET - /cliente
+  - GET - /clientes
   - HTTP/1.1
   - Host: localhost:8080
   
@@ -210,7 +210,7 @@
   </details>
 
   <details>
-    <summary> EDITAR CLIENTES - /cliente </summary>
+    <summary> EDITAR CLIENTES - /clientes </summary>
     
   ### Descrição
   
@@ -222,7 +222,7 @@
   
   ### Exemplo de Requisição
   
-  - PUT - /cliente
+  - PUT - /clientes
   - HTTP/1.1
   - Host: localhost:8080
 
@@ -242,7 +242,7 @@
   </details>
   
   <details>
-    <summary>EXCLUIR CLIENTE /cliente/{id}</summary>
+    <summary>EXCLUIR CLIENTE /clientes/{id}</summary>
     
   ### Descrição
   
@@ -254,7 +254,7 @@
   
   ### Exemplo de Requisição
   
-  - DELETE - /cliente/7
+  - DELETE - /clientes/7
   - HTTP/1.1
   - Host: localhost:8080
 
@@ -276,7 +276,7 @@
 | /comidas/{id}        |   *  | DELETE   |
   
   <details>
-    <summary>CADASTRAR UMA NOVA COMIDA AO CARDÁPIO - /comida</summary>
+    <summary>CADASTRAR UMA NOVA COMIDA AO CARDÁPIO - /comidas</summary>
     
   ### Descrição
   
@@ -316,7 +316,7 @@
   </details>
 
   <details>
-    <summary> DETALHAR COMIDA - /comida/{id} </summary>
+    <summary> DETALHAR COMIDA - /comidas/{id} </summary>
     
   ### Descrição
   
@@ -660,7 +660,7 @@
   
   ### Exemplo de Requisição
   
-  - GET - /pedidos/3
+  - PTCH - /pedidos/3
   - HTTP/1.1
   - Host: localhost:8080
   
