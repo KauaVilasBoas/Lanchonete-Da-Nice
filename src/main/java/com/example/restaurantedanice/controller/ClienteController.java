@@ -24,7 +24,7 @@ public class ClienteController {
     public ResponseEntity cadastrar(@RequestBody @Valid CadastroClienteDTO dados, UriComponentsBuilder uriBuilder){
 
         var dadosDetalhamentoCliente = service.cadastrarCliente(dados);
-        var uri = uriBuilder.path("/cliente/{id}").buildAndExpand(dadosDetalhamentoCliente.id()).toUri();
+        var uri = uriBuilder.path("/clientes/{id}").buildAndExpand(dadosDetalhamentoCliente.id()).toUri();
         return ResponseEntity.created(uri).body(dadosDetalhamentoCliente);
 
     }
