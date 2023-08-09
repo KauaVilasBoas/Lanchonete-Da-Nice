@@ -62,6 +62,7 @@
                     <td>${cliente.email}</td>
                     <td>${cliente.telefone}</td>
                     <td>
+                     <button class="btn btn-primary mr-2" onclick="editarCliente(${cliente.id})">Editar</button>
                         <button class="btn btn-danger" onclick="excluirCliente(${cliente.id})">Excluir</button>
                     </td>
                 `;
@@ -76,6 +77,66 @@
                 document.getElementById('listaClientes').innerText = 'Erro ao listar clientes.';
             });
     }
+
+    function editarCliente(clienteId) {
+        fetch(`http://localhost:8080/clientes/${clienteId}`)
+            .then(response => response.json())
+            .then(cliente => {
+                document.getElementById('resultado').innerHTML = `
+                <h2>Editar Cliente</h2>
+                <form id="formEditar">
+                    <div class="mb-3">
+                        <label for="nomeEditar" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" id="nomeEditar" value="${cliente.nome}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="telefoneEditar" class="form-label">Telefone:</label>
+                        <input type="tel" class="form-control" id="telefoneEditar" value="${cliente.telefone}" pattern="[0-9]{10,11}">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            `;
+
+                document.getElementById('formEditar').addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const idEditar = cliente.id; // Obtendo o id do cliente
+                    const nomeEditar = document.getElementById('nomeEditar').value;
+                    const telefoneEditar = document.getElementById('telefoneEditar').value;
+
+                    const clienteEditar = {
+                        id: idEditar,
+                        nome: nomeEditar,
+                        telefone: telefoneEditar
+                    };
+
+                    fetch(`http://localhost:8080/clientes`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(clienteEditar)
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                document.getElementById('resultado').innerText = 'Cliente editado com sucesso!';
+                                listarClientes();
+                            } else {
+                                console.error('Erro ao editar cliente.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao editar cliente.', error);
+                        });
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao obter dados do cliente para edição.', error);
+            });
+    }
+
 
 
     function excluirCliente(clienteId) {
