@@ -1,5 +1,6 @@
 package com.example.restaurantedanice.controller;
 
+import com.example.restaurantedanice.domain.comida.Comida;
 import com.example.restaurantedanice.domain.pedido.*;
 import com.example.restaurantedanice.domain.pedido.dtos.AtualizacaoPedidoDTO;
 import com.example.restaurantedanice.domain.pedido.dtos.CadastroPedidoDTO;
@@ -12,9 +13,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("pedidos")
@@ -24,7 +28,7 @@ public class PedidoController {
     private PedidoService service;
 
     @PostMapping
-    public ResponseEntity novoPedido(@RequestBody @Valid CadastroPedidoDTO dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<DetalhamentoPedidoDTO> novoPedido(@RequestBody @Valid CadastroPedidoDTO dados, UriComponentsBuilder uriBuilder){
 
         var dadosDetalhamentoPedido = service.novoPedido(dados);
         var uri = uriBuilder.path("pedido/{id}").buildAndExpand(dadosDetalhamentoPedido.id()).toUri();
@@ -39,7 +43,7 @@ public class PedidoController {
     }
 
     @GetMapping("comidas/{id}")
-    public ResponseEntity listarComidasPeloPedido(@PathVariable Long id){
+    public ResponseEntity<List<Comida>> listarComidasPeloPedido(@PathVariable Long id){
 
         var lista = service.listarComidasPeloPedido(id);
         return ResponseEntity.ok(lista);
@@ -47,7 +51,7 @@ public class PedidoController {
     }
 
     @GetMapping("/{status}")
-    public ResponseEntity listarPedidoPeloStatus(@PathVariable Status status){
+    public ResponseEntity<List<Pedido>> listarPedidoPeloStatus(@PathVariable Status status){
 
         var pedidos = service.listarPedidosPeloStatus(status);
         return ResponseEntity.ok(pedidos);
@@ -63,13 +67,14 @@ public class PedidoController {
     }
 
     @PutMapping
-    public ResponseEntity atualizarPedido(@RequestBody @Valid AtualizacaoPedidoDTO dados){
+    public ResponseEntity<DetalhamentoPedidoDTO> atualizarPedido(@RequestBody @Valid AtualizacaoPedidoDTO dados){
         service.atualizarPedido(dados);
-        return ResponseEntity.ok("Pedido atualizado");
+        var detalhesPedido = service.detalharPedido(dados.id());
+        return ResponseEntity.ok(detalhesPedido);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity concluirPedido(@PathVariable Long id){
+    public ResponseEntity<Object> concluirPedido(@PathVariable Long id){
 
         service.concluirPedido(id);
         return ResponseEntity.ok().build();
@@ -77,7 +82,7 @@ public class PedidoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity excluirPedido(@PathVariable Long id){
+    public ResponseEntity<Object> excluirPedido(@PathVariable Long id){
         service.excluirPedido(id);
         return ResponseEntity.noContent().build();
     }

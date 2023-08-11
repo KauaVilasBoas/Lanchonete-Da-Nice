@@ -2,6 +2,7 @@ package com.example.restaurantedanice.controller;
 
 import com.example.restaurantedanice.domain.comida.dtos.AtualizacaoComidaDTO;
 import com.example.restaurantedanice.domain.comida.dtos.CadastroComidaDTO;
+import com.example.restaurantedanice.domain.comida.dtos.DetalhamentoComidaDTO;
 import com.example.restaurantedanice.domain.comida.dtos.ListagemComidaDTO;
 import com.example.restaurantedanice.service.ComidaService;
 import jakarta.validation.Valid;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,7 +23,7 @@ public class ComidaController {
     private ComidaService service;
 
     @PostMapping
-    public ResponseEntity cadastro(@RequestBody @Valid CadastroComidaDTO dados, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DetalhamentoComidaDTO> cadastro(@RequestBody @Valid CadastroComidaDTO dados, UriComponentsBuilder uriBuilder) {
 
         var dadosDetalhamentoComida = service.cadastrarComida(dados);
         var uri = uriBuilder.path("/comida/{id}").buildAndExpand(dadosDetalhamentoComida.id()).toUri();
@@ -38,7 +40,7 @@ public class ComidaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity detalhar(@PathVariable Long id) {
+    public ResponseEntity<DetalhamentoComidaDTO> detalhar(@PathVariable Long id) {
 
         var detalhamentoComida = service.detalharComida(id);
         return ResponseEntity.ok(detalhamentoComida);
@@ -46,13 +48,14 @@ public class ComidaController {
     }
 
     @PutMapping
-    public ResponseEntity atualizar(@RequestBody @Valid AtualizacaoComidaDTO dados) {
+    public ResponseEntity<DetalhamentoComidaDTO> atualizar(@RequestBody @Valid AtualizacaoComidaDTO dados) {
         service.atualizarComida(dados);
-        return ResponseEntity.ok("Dados atualizados!");
+        var detalhamentoComida = service.detalharComida(dados.id());
+        return ResponseEntity.ok(detalhamentoComida);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity excluir(@PathVariable Long id) {
+    public ResponseEntity<Object> excluir(@PathVariable Long id) {
         service.excluirComida(id);
         return ResponseEntity.noContent().build();
     }
