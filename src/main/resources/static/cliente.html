@@ -9,6 +9,39 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .navbar {
+        background-color: #fff;
+    }
+
+    .navbar-brand img {
+        margin-right: 10px;
+    }
+
+    .container {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .mt-4 {
+        margin-top: 1.5rem;
+    }
+
+    .modal-dialog {
+        max-width: 400px;
+    }
+</style>
+
 
 
 <body>
@@ -40,8 +73,6 @@
         </div>
     </div>
 </nav>
-
-<!-- Seu conteúdo aqui -->
 
 <div class="container mt-5">
     <h1 class="mb-4">Cadastro de Cliente</h1>
@@ -76,11 +107,47 @@
     <div id="listaClientes" class="mt-4"></div>
 </div>
 
+<div class="modal fade" id="modalEditarCliente" tabindex="-1" aria-labelledby="modalEditarClienteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditarClienteLabel">Editar Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarCliente">
+                    <!-- Campos de edição do cliente aqui -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnSalvarEdicao">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDetalharCliente" tabindex="-1" aria-labelledby="modalDetalharClienteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDetalharClienteLabel">Detalhes do Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body" id="modalDetalharClienteBody">
+                <!-- Detalhes do cliente serão adicionados aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="cliente/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
 </body>
