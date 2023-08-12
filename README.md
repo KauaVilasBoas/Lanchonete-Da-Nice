@@ -35,6 +35,9 @@
     <li>Lombok</li>
     <li>Spring Validation</li>
     <li>Flyway</li>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>Javascript</li>
   </ul>
         
 
