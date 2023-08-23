@@ -21,7 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
-@RequestMapping("pedidos")
+@RequestMapping("/pedidos")
 public class PedidoController {
 
     @Autowired

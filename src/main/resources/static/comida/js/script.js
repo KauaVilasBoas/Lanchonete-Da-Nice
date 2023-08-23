@@ -22,6 +22,7 @@ document.getElementById('formularioComida').addEventListener('submit', function 
         .then(data => {
             document.getElementById('resultadoComida').innerText = 'Comida cadastrado com sucesso!';
             document.getElementById('formularioComida').reset();
+            listarComidas();
         })
         .catch(error => {
             document.getElementById('resultado').innerText = 'Erro ao cadastrar comida.';
@@ -105,7 +106,7 @@ function detalharComida(id) {
             detalhesComida.innerHTML = `
                 <h5>Título: ${comida.titulo}</h5>
                 <p>Preço: R$ ${comida.preco.toFixed(2)}</p>
-                <p>Imagem: <img src="${comida.imagem}" alt="Imagem da Comida" style="max-width: 100%;"></p>
+                <p><img src="${comida.imagem}" alt="Imagem da Comida" style="max-width: 100%;"></p>
             `;
 
             modal.show();
