@@ -2,6 +2,7 @@ package com.example.restaurantedanice.domain.pedido;
 
 import com.example.restaurantedanice.domain.cliente.Cliente;
 import com.example.restaurantedanice.domain.comida.Comida;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class Pedido {
     private Cliente cliente;
     @ManyToMany
     private List<Comida> comidas;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime data_hora;
     @Enumerated(EnumType.STRING)
     private Status status;

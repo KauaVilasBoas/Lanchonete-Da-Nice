@@ -92,8 +92,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-function listarPedidos() {
-    fetch('http://localhost:8080/pedidos')
+// ...
+
+let currentPage = 1;
+const itemsPerPage = 10;
+
+function listarPedidos(page) {
+    currentPage = page || 1;
+
+    fetch(`http://localhost:8080/pedidos?page=${currentPage - 1}&size=${itemsPerPage}`)
         .then(response => response.json())
         .then(data => {
             let listaPedidos = document.getElementById('listaPedidos');
@@ -120,22 +127,38 @@ function listarPedidos() {
             data.content.forEach(pedido => {
                 let tr = document.createElement('tr');
                 tr.innerHTML = `
-                <td>${pedido.nomeCliente}</td>
-                <td>${pedido.data_hora}</td>
-                <td>${pedido.comidaList.map(comida => comida.titulo).join(', ')}</td>
-                <td>${pedido.status}</td>
-                <td>${pedido.ativo ? 'Sim' : 'Não'}</td>
-                <td>R$ ${pedido.precoTotal.toFixed(2)}</td>
-            `;
+        <td>${pedido.nomeCliente}</td>
+        <td>${pedido.data_hora}</td> <!-- Exibir data e hora no formato original -->
+        <td>${pedido.comidaList.map(comida => comida.titulo).join(', ')}</td>
+        <td>${pedido.status}</td>
+        <td>${pedido.ativo ? 'Sim' : 'Não'}</td>
+        <td>R$ ${pedido.precoTotal.toFixed(2)}</td>
+    `;
                 tbody.appendChild(tr);
+                listaPedidos.scrollIntoView({ behavior: "smooth" });
             });
 
             table.appendChild(tbody);
 
             listaPedidos.appendChild(table);
+
+            // Paginação
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            const totalPages = Math.ceil(data.totalElements / itemsPerPage);
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement('li');
+                li.className = 'page-item';
+                li.innerHTML = `<a class="page-link" href="#" onclick="listarPedidos(${i})">${i}</a>`;
+                if (i === currentPage) {
+                    li.classList.add('active');
+                }
+                pagination.appendChild(li);
+                listaPedidos.scrollIntoView({ behavior: "smooth" });
+            }
         })
         .catch(error => {
             document.getElementById('listaPedidos').innerText = 'Erro ao listar pedidos.';
         });
 }
-
