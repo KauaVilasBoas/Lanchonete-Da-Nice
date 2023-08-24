@@ -1,0 +1,31 @@
+_id: req_692ef5094a2d469e9ad50ed1c59e84f6
+type: Request
+parentId: fld_05bf086c295a4e81ada06129074273db
+modified: 1689344351542
+created: 1688993368565
+url: http://localhost:8080/clientes
+name: Cadastrar Cliente
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"nome": "Axel",
+    	"email":"axel@rest.com",
+    	"telefone": "71999882319",
+    	"cpf":"615.897.321-19"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1688993369907.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

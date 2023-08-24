@@ -1,0 +1,21 @@
+_id: req_8d042a2cc38b4083b5d4191776393231
+type: Request
+parentId: fld_324878800e144629898454a4faafaec6
+modified: 1688994938981
+created: 1688994392223
+url: http://localhost:8080/comida/1
+name: Deletar Comida
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688994392223
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

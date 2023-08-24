@@ -1,0 +1,30 @@
+_id: req_6e7c589c32c74e118c9fce778ed39a68
+type: Request
+parentId: fld_324878800e144629898454a4faafaec6
+modified: 1689345256457
+created: 1688994403756
+url: http://localhost:8080/comidas
+name: Cadastrar Comida
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: >-
+    {
+    	"titulo":"X-Egg",
+    	"imagem":"https://www.recepedia.com/pt-br/receita/carne/230410-x-salada-bacon/",
+    	"preco":19.0
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1688994403756
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

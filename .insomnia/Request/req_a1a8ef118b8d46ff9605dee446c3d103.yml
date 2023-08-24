@@ -1,0 +1,21 @@
+_id: req_a1a8ef118b8d46ff9605dee446c3d103
+type: Request
+parentId: fld_05bf086c295a4e81ada06129074273db
+modified: 1689343321731
+created: 1688993814677
+url: http://localhost:8080/clientes/3
+name: Deletar Cliente
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688993363706
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

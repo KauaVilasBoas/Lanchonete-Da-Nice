@@ -1,0 +1,21 @@
+_id: req_537131f2bbcc46708234a53773e691b6
+type: Request
+parentId: fld_05bf086c295a4e81ada06129074273db
+modified: 1689344503049
+created: 1688993367091
+url: http://localhost:8080/clientes/4
+name: Detalhar Cliente
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688993367091
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

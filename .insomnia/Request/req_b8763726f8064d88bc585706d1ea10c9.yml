@@ -1,0 +1,21 @@
+_id: req_b8763726f8064d88bc585706d1ea10c9
+type: Request
+parentId: fld_5bb58eaf15a04962b6ab0b3c07575d85
+modified: 1689194440486
+created: 1688995075355
+url: http://localhost:8080/pedidos
+name: Listar todos os pedidos
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688995075355
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

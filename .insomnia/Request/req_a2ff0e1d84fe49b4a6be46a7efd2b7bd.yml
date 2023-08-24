@@ -1,0 +1,30 @@
+_id: req_a2ff0e1d84fe49b4a6be46a7efd2b7bd
+type: Request
+parentId: fld_5bb58eaf15a04962b6ab0b3c07575d85
+modified: 1689345348995
+created: 1688995061228
+url: http://localhost:8080/pedidos
+name: Editar Pedido
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    
+    {
+    	"id":5,
+    	"idComidaList":[2,4]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1688995061228
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

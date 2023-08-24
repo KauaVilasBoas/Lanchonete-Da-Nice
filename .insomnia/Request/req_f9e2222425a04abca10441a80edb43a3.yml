@@ -1,0 +1,21 @@
+_id: req_f9e2222425a04abca10441a80edb43a3
+type: Request
+parentId: fld_324878800e144629898454a4faafaec6
+modified: 1688994884316
+created: 1688994398350
+url: http://localhost:8080/comida/1
+name: Detalhar Comida
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688994398350
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

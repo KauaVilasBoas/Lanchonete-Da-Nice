@@ -1,0 +1,29 @@
+_id: req_4ae64f081db64bf5b3df4ef0729d801c
+type: Request
+parentId: fld_324878800e144629898454a4faafaec6
+modified: 1688994909740
+created: 1688994396147
+url: http://localhost:8080/comida
+name: Editar Comida
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"id":1,
+    	"preco":19.00
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1688994396147
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

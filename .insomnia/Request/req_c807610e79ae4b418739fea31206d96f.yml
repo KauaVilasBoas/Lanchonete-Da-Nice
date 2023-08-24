@@ -1,0 +1,29 @@
+_id: req_c807610e79ae4b418739fea31206d96f
+type: Request
+parentId: fld_5bb58eaf15a04962b6ab0b3c07575d85
+modified: 1689344545724
+created: 1688995075792
+url: http://localhost:8080/pedidos
+name: Novo Pedido
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"idCliente":4,
+    	"idComidaList":[2,3]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1688995075792
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

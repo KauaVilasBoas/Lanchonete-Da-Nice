@@ -1,0 +1,21 @@
+_id: req_38310d5169094509afc76872c2486c08
+type: Request
+parentId: fld_324878800e144629898454a4faafaec6
+modified: 1689194459373
+created: 1688994400469
+url: http://localhost:8080/comidas
+name: Listar Todas as Comidas (PAGE)
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688994400469
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

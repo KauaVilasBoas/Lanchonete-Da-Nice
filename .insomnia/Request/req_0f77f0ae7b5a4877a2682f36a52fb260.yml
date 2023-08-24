@@ -1,0 +1,21 @@
+_id: req_0f77f0ae7b5a4877a2682f36a52fb260
+type: Request
+parentId: fld_5bb58eaf15a04962b6ab0b3c07575d85
+modified: 1689345100512
+created: 1688995073941
+url: http://localhost:8080/pedidos/comidas/5
+name: Listar Comidas do Pedido
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688995073941
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

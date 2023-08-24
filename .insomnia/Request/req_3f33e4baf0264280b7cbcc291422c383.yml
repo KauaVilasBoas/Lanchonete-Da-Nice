@@ -1,0 +1,29 @@
+_id: req_3f33e4baf0264280b7cbcc291422c383
+type: Request
+parentId: fld_05bf086c295a4e81ada06129074273db
+modified: 1688993774126
+created: 1688993363756
+url: http://localhost:8080/cliente
+name: Editar Cliente
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"id": 1,
+    	"nome": "Kauã Caldeira"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1688993363756
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

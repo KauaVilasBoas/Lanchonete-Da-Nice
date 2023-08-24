@@ -1,0 +1,21 @@
+_id: req_5296d55fa4754d9b8cd562740bf9294c
+type: Request
+parentId: fld_5bb58eaf15a04962b6ab0b3c07575d85
+modified: 1689344566530
+created: 1688995057923
+url: http://localhost:8080/pedidos/5
+name: Deletar Pedido
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688995057923
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

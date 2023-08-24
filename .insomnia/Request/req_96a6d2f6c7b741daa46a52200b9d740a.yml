@@ -1,0 +1,21 @@
+_id: req_96a6d2f6c7b741daa46a52200b9d740a
+type: Request
+parentId: fld_5bb58eaf15a04962b6ab0b3c07575d85
+modified: 1689344669227
+created: 1688995552466
+url: http://localhost:8080/pedidos/detalhar/5
+name: Detalhar Pedido
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688995074648
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

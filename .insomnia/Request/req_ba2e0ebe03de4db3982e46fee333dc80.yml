@@ -1,0 +1,21 @@
+_id: req_ba2e0ebe03de4db3982e46fee333dc80
+type: Request
+parentId: fld_5bb58eaf15a04962b6ab0b3c07575d85
+modified: 1689194903491
+created: 1688995703560
+url: http://localhost:8080/pedidos/3
+name: Concluir Pedido
+description: ""
+method: PATCH
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688995067584.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

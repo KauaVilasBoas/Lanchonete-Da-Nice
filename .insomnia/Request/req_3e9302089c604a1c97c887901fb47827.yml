@@ -1,0 +1,21 @@
+_id: req_3e9302089c604a1c97c887901fb47827
+type: Request
+parentId: fld_eb86ab2e8c194ef09b41d8c5cb757af2
+modified: 1689194939294
+created: 1688995510001
+url: http://localhost:8080/pedidos/PREPARANDO
+name: Filtrar por Status
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688995510001
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

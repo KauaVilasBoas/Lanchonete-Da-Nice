@@ -1,0 +1,21 @@
+_id: req_27052608c68c4936af4df30cf4818c31
+type: Request
+parentId: fld_05bf086c295a4e81ada06129074273db
+modified: 1689194450780
+created: 1688993370355
+url: http://localhost:8080/clientes
+name: Listar Todos os Clientes (PAGE)
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1688993368499.25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
