@@ -26,7 +26,7 @@ public class Pedido {
     @ManyToMany
     private List<Comida> comidas;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime data_hora;
+    private LocalDateTime dataHora;
     @Enumerated(EnumType.STRING)
     private Status status;
     private boolean ativo;
@@ -36,7 +36,7 @@ public class Pedido {
 
         this.cliente = cliente;
         this.comidas = comidasList;
-        this.data_hora = LocalDateTime.now();
+        this.dataHora = LocalDateTime.now();
         this.status = Status.PREPARANDO;
         this.ativo = true;
         this.precoTotal = comidasList.stream().mapToDouble(Comida::getPreco).sum();

@@ -23,7 +23,7 @@ public record DetalhamentoPedidoDTO(
                 pedido.getId(),
                 new DetalhamentoClienteDTO(pedido.getCliente()),
                 pedido.getComidas().stream().map(DetalhamentoComidaDTO::new).collect(Collectors.toList()),
-                pedido.getData_hora(),
+                pedido.getDataHora(),
                 pedido.getStatus(),
                 pedido.isAtivo(),
                 pedido.getPrecoTotal());

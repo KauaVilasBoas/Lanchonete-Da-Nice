@@ -4,7 +4,6 @@ import com.example.restaurantedanice.domain.comida.dtos.DetalhamentoComidaDTO;
 import com.example.restaurantedanice.domain.pedido.Pedido;
 import com.example.restaurantedanice.domain.pedido.Status;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +15,6 @@ public record ListagemPedidoDTO(
         String data_hora,
         List<DetalhamentoComidaDTO> comidaList,
         Status status,
-        boolean ativo,
         Double precoTotal
 
 ) {
@@ -26,10 +24,9 @@ public record ListagemPedidoDTO(
     public ListagemPedidoDTO(Pedido pedido) {
         this(pedido.getId(),
                 pedido.getCliente().getNome(),
-                pedido.getData_hora().format(formatter),
+                pedido.getDataHora().format(formatter),
                 pedido.getComidas().stream().map(DetalhamentoComidaDTO::new).collect(Collectors.toList()),
                 pedido.getStatus(),
-                pedido.isAtivo(),
                 pedido.getPrecoTotal());
     }
 

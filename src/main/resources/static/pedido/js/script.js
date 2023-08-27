@@ -92,8 +92,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-// ...
-
 let currentPage = 1;
 const itemsPerPage = 10;
 
@@ -115,8 +113,6 @@ function listarPedidos(page) {
                 <th scope="col">Nome do Cliente</th>
                 <th scope="col">Data e Hora</th>
                 <th scope="col">Comidas</th>
-                <th scope="col">Status</th>
-                <th scope="col">Ativo</th>
                 <th scope="col">Preço Total</th>
             </tr>
         `;
@@ -130,9 +126,7 @@ function listarPedidos(page) {
         <td>${pedido.nomeCliente}</td>
         <td>${pedido.data_hora}</td> <!-- Exibir data e hora no formato original -->
         <td>${pedido.comidaList.map(comida => comida.titulo).join(', ')}</td>
-        <td>${pedido.status}</td>
-        <td>${pedido.ativo ? 'Sim' : 'Não'}</td>
-        <td>R$ ${pedido.precoTotal.toFixed(2)}</td>
+        <td>R$ ${pedido.precoTotal.toFixed(2)}</td>OUT
     `;
                 tbody.appendChild(tr);
                 listaPedidos.scrollIntoView({ behavior: "smooth" });
