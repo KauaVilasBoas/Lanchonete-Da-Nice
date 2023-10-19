@@ -126,7 +126,7 @@ function listarPedidos(page) {
         <td>${pedido.nomeCliente}</td>
         <td>${pedido.data_hora}</td> <!-- Exibir data e hora no formato original -->
         <td>${pedido.comidaList.map(comida => comida.titulo).join(', ')}</td>
-        <td>R$ ${pedido.precoTotal.toFixed(2)}</td>OUT
+        <td>R$ ${pedido.precoTotal.toFixed(2)}</td>
     `;
                 tbody.appendChild(tr);
                 listaPedidos.scrollIntoView({ behavior: "smooth" });
