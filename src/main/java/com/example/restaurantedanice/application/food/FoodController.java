@@ -1,6 +1,5 @@
 package com.example.restaurantedanice.application.food;
 
-import com.example.restaurantedanice.service.ComidaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class FoodController {
 
     @Autowired
-    private ComidaService service;
+    private FoodService service;
 
     @PostMapping
     public ResponseEntity<FoodDetailDTO> cadastro(@RequestBody @Valid FoodCreateDTO dados, UriComponentsBuilder uriBuilder) {

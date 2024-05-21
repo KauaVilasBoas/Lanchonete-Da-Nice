@@ -1,9 +1,5 @@
-package com.example.restaurantedanice.service;
+package com.example.restaurantedanice.application.food;
 
-import com.example.restaurantedanice.application.food.FoodUpdateDTO;
-import com.example.restaurantedanice.application.food.FoodCreateDTO;
-import com.example.restaurantedanice.application.food.FoodDetailDTO;
-import com.example.restaurantedanice.application.food.FoodListDTO;
 import com.example.restaurantedanice.infra.food.Food;
 import com.example.restaurantedanice.infra.food.FoodRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -15,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class ComidaService {
+public class FoodService {
 
     @Autowired
     private FoodRepository repository;

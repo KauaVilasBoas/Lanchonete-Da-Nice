@@ -3,7 +3,6 @@ package com.example.restaurantedanice.application.order;
 import com.example.restaurantedanice.infra.food.Food;
 import com.example.restaurantedanice.infra.order.Order;
 import com.example.restaurantedanice.infra.order.Status;
-import com.example.restaurantedanice.service.PedidoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +21,7 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    private PedidoService service;
+    private OrderService service;
 
     @PostMapping
     public ResponseEntity<OrderDetailDTO> novoPedido(@RequestBody @Valid OrderCreateDTO dados, UriComponentsBuilder uriBuilder){

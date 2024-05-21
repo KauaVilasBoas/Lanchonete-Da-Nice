@@ -1,9 +1,5 @@
-package com.example.restaurantedanice.service;
+package com.example.restaurantedanice.application.client;
 
-import com.example.restaurantedanice.application.client.ClientUpdateDTO;
-import com.example.restaurantedanice.application.client.ClientCreateDTO;
-import com.example.restaurantedanice.application.client.ClientDetailDTO;
-import com.example.restaurantedanice.application.client.ClientListDTO;
 import com.example.restaurantedanice.infra.client.Client;
 import com.example.restaurantedanice.infra.client.ClientRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -15,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class ClienteService {
+public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;

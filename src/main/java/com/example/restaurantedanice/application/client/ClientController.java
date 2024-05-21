@@ -1,6 +1,5 @@
 package com.example.restaurantedanice.application.client;
 
-import com.example.restaurantedanice.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class ClientController {
 
     @Autowired
-    private ClienteService service;
+    private ClientService service;
 
     @PostMapping
     public ResponseEntity<ClientDetailDTO> cadastrar(@RequestBody @Valid ClientCreateDTO dados, UriComponentsBuilder uriBuilder){

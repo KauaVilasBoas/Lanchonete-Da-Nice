@@ -1,12 +1,8 @@
-package com.example.restaurantedanice.service;
+package com.example.restaurantedanice.application.order;
 
 import com.example.restaurantedanice.infra.client.ClientRepository;
 import com.example.restaurantedanice.infra.food.Food;
 import com.example.restaurantedanice.infra.food.FoodRepository;
-import com.example.restaurantedanice.application.order.OrderUpdateDTO;
-import com.example.restaurantedanice.application.order.OrderCreateDTO;
-import com.example.restaurantedanice.application.order.OrderDetailDTO;
-import com.example.restaurantedanice.application.order.OrderListDTO;
 import com.example.restaurantedanice.infra.order.Order;
 import com.example.restaurantedanice.infra.order.OrderRepository;
 import com.example.restaurantedanice.infra.order.Status;
@@ -22,7 +18,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class PedidoService {
+public class OrderService {
 
     @Autowired
     private ClientRepository clientRepository;

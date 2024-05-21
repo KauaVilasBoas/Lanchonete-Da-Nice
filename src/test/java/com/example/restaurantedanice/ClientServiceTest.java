@@ -4,7 +4,7 @@ import com.example.restaurantedanice.application.client.ClientController;
 import com.example.restaurantedanice.infra.client.Client;
 import com.example.restaurantedanice.application.client.ClientCreateDTO;
 import com.example.restaurantedanice.application.client.ClientDetailDTO;
-import com.example.restaurantedanice.service.ClienteService;
+import com.example.restaurantedanice.application.client.ClientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -33,7 +33,7 @@ class ClientServiceTest {
     private ClientController clientController;
 
     @MockBean
-    private ClienteService clienteService;
+    private ClientService clientService;
 
     @Autowired
     private MockMvc mvc;
@@ -48,7 +48,7 @@ class ClientServiceTest {
 
         Client client = new Client(clientCreateDTO);
 
-        when(clienteService.cadastrarCliente(any(ClientCreateDTO.class)))
+        when(clientService.cadastrarCliente(any(ClientCreateDTO.class)))
                 .thenReturn(new ClientDetailDTO(client));
 
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
@@ -59,7 +59,7 @@ class ClientServiceTest {
                 .andExpect(status().isCreated())
                 .andReturn();
 
-        Mockito.verify(clienteService, Mockito.times(1)).cadastrarCliente(any(ClientCreateDTO.class));
+        Mockito.verify(clientService, Mockito.times(1)).cadastrarCliente(any(ClientCreateDTO.class));
 
         String locationHeader = result.getResponse().getHeader("Location");
 
