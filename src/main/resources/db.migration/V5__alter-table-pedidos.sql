@@ -1,2 +1,2 @@
 alter table pedidos
-ALTER COLUMN comida DROP NOT NULL
+ALTER COLUMN food DROP NOT NULL

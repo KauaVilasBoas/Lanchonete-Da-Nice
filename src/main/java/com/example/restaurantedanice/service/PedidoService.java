@@ -1,13 +1,15 @@
 package com.example.restaurantedanice.service;
 
-import com.example.restaurantedanice.domain.cliente.ClienteRepository;
-import com.example.restaurantedanice.domain.comida.Comida;
-import com.example.restaurantedanice.domain.comida.ComidaRepository;
-import com.example.restaurantedanice.domain.pedido.*;
-import com.example.restaurantedanice.domain.pedido.dtos.AtualizacaoPedidoDTO;
-import com.example.restaurantedanice.domain.pedido.dtos.CadastroPedidoDTO;
-import com.example.restaurantedanice.domain.pedido.dtos.DetalhamentoPedidoDTO;
-import com.example.restaurantedanice.domain.pedido.dtos.ListagemPedidoDTO;
+import com.example.restaurantedanice.infra.client.ClientRepository;
+import com.example.restaurantedanice.infra.food.Food;
+import com.example.restaurantedanice.infra.food.FoodRepository;
+import com.example.restaurantedanice.application.order.OrderUpdateDTO;
+import com.example.restaurantedanice.application.order.OrderCreateDTO;
+import com.example.restaurantedanice.application.order.OrderDetailDTO;
+import com.example.restaurantedanice.application.order.OrderListDTO;
+import com.example.restaurantedanice.infra.order.Order;
+import com.example.restaurantedanice.infra.order.OrderRepository;
+import com.example.restaurantedanice.infra.order.Status;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,40 +25,40 @@ import java.util.List;
 public class PedidoService {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClientRepository clientRepository;
 
     @Autowired
-    private ComidaRepository comidaRepository;
+    private FoodRepository foodRepository;
 
     @Autowired
-    private PedidoRepository pedidoRepository;
+    private OrderRepository orderRepository;
 
-    public DetalhamentoPedidoDTO novoPedido(CadastroPedidoDTO dados) throws EntityNotFoundException {
+    public OrderDetailDTO novoPedido(OrderCreateDTO dados) throws EntityNotFoundException {
 
-        var cliente = clienteRepository.getReferenceById(dados.idCliente());
+        var cliente = clientRepository.getReferenceById(dados.idCliente());
 
         if (cliente.equals(null)) throw new EntityNotFoundException();
 
-        List<Comida> comidaList = new ArrayList<>();
+        List<Food> foodList = new ArrayList<>();
 
         for (Long id_comida :
                 dados.idComidaList()) {
 
             if (id_comida != null) {
-                comidaList.add(comidaRepository.getReferenceById(id_comida));
+                foodList.add(foodRepository.getReferenceById(id_comida));
             }
 
         }
 
-        var pedido = new Pedido(cliente, comidaList);
-        pedidoRepository.save(pedido);
+        var pedido = new Order(cliente, foodList);
+        orderRepository.save(pedido);
 
-        return new DetalhamentoPedidoDTO(pedido);
+        return new OrderDetailDTO(pedido);
     }
 
     public void excluirPedido(Long id) throws EntityNotFoundException {
 
-        var pedido = pedidoRepository.getReferenceById(id);
+        var pedido = orderRepository.getReferenceById(id);
 
         if (pedido.equals(null)) throw new EntityNotFoundException();
 
@@ -65,54 +67,54 @@ public class PedidoService {
 
     }
 
-    public Page<ListagemPedidoDTO> listarPedidos(Pageable pageable) {
-        var page = pedidoRepository.findAll(pageable).map(ListagemPedidoDTO::new);
+    public Page<OrderListDTO> listarPedidos(Pageable pageable) {
+        var page = orderRepository.findAll(pageable).map(OrderListDTO::new);
         return page;
     }
 
-    public List<Comida> listarComidasPeloPedido(Long id) {
+    public List<Food> listarComidasPeloPedido(Long id) {
 
-        var comidas = pedidoRepository.findComidasByPedidoId(id);
+        var comidas = orderRepository.findComidasByPedidoId(id);
 
         return comidas;
     }
 
     public void concluirPedido(Long id) {
 
-        var pedido = pedidoRepository.getReferenceById(id);
+        var pedido = orderRepository.getReferenceById(id);
         pedido.setStatus(Status.ENTREGUE);
 
     }
 
-    public List<Pedido> listarPedidosPeloStatus(Status status) {
+    public List<Order> listarPedidosPeloStatus(Status status) {
 
-        var pedidos = pedidoRepository.findAllByStatusEquals(status);
+        var pedidos = orderRepository.findAllByStatusEquals(status);
         return pedidos;
 
     }
 
-    public void atualizarPedido(AtualizacaoPedidoDTO dados) {
+    public void atualizarPedido(OrderUpdateDTO dados) {
 
-        var pedido = pedidoRepository.getReferenceById(dados.id());
+        var pedido = orderRepository.getReferenceById(dados.id());
 
         var lista = dados.idComidaList();
 
-        var listaComidas = new ArrayList<Comida>();
+        var listaComidas = new ArrayList<Food>();
 
         for (Long idComida:
              lista) {
 
-            listaComidas.add(comidaRepository.getReferenceById(idComida));
+            listaComidas.add(foodRepository.getReferenceById(idComida));
 
         }
 
-        pedido.setComidas(listaComidas);
-        pedido.setPrecoTotal(listaComidas.stream().mapToDouble(Comida::getPreco).sum());
+        pedido.setFoods(listaComidas);
+        pedido.setPrecoTotal(listaComidas.stream().mapToDouble(Food::getPreco).sum());
 
     }
 
-    public DetalhamentoPedidoDTO detalharPedido(Long id) {
-        var pedido = pedidoRepository.getReferenceById(id);
-        return new DetalhamentoPedidoDTO(pedido);
+    public OrderDetailDTO detalharPedido(Long id) {
+        var pedido = orderRepository.getReferenceById(id);
+        return new OrderDetailDTO(pedido);
     }
 }

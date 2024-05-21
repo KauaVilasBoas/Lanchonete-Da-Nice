@@ -1,10 +1,11 @@
 package com.example.restaurantedanice.service;
 
-import com.example.restaurantedanice.domain.cliente.*;
-import com.example.restaurantedanice.domain.cliente.dtos.AtualizacaoClienteDTO;
-import com.example.restaurantedanice.domain.cliente.dtos.CadastroClienteDTO;
-import com.example.restaurantedanice.domain.cliente.dtos.DetalhamentoClienteDTO;
-import com.example.restaurantedanice.domain.cliente.dtos.ListagemClienteDTO;
+import com.example.restaurantedanice.application.client.ClientUpdateDTO;
+import com.example.restaurantedanice.application.client.ClientCreateDTO;
+import com.example.restaurantedanice.application.client.ClientDetailDTO;
+import com.example.restaurantedanice.application.client.ClientListDTO;
+import com.example.restaurantedanice.infra.client.Client;
+import com.example.restaurantedanice.infra.client.ClientRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,38 +18,38 @@ import org.springframework.transaction.annotation.Transactional;
 public class ClienteService {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClientRepository clientRepository;
 
-    public DetalhamentoClienteDTO cadastrarCliente(CadastroClienteDTO dados){
+    public ClientDetailDTO cadastrarCliente(ClientCreateDTO dados){
 
-        var cliente = new Cliente(dados);
-        clienteRepository.save(cliente);
-        return new DetalhamentoClienteDTO(cliente);
+        var cliente = new Client(dados);
+        clientRepository.save(cliente);
+        return new ClientDetailDTO(cliente);
 
     }
 
-    public Page<ListagemClienteDTO> listarClientes(Pageable pageable){
-        var page = clienteRepository.findAllByAtivoTrue(pageable).map(ListagemClienteDTO::new);
+    public Page<ClientListDTO> listarClientes(Pageable pageable){
+        var page = clientRepository.findAllByAtivoTrue(pageable).map(ClientListDTO::new);
         return page;
     }
 
-    public DetalhamentoClienteDTO detalharCliente(Long id){
+    public ClientDetailDTO detalharCliente(Long id){
 
-        var cliente = clienteRepository.getReferenceById(id);
-        return new DetalhamentoClienteDTO(cliente);
+        var cliente = clientRepository.getReferenceById(id);
+        return new ClientDetailDTO(cliente);
 
     }
 
-    public void editarCliente(AtualizacaoClienteDTO dados) throws EntityNotFoundException {
+    public void editarCliente(ClientUpdateDTO dados) throws EntityNotFoundException {
 
-        var cliente = clienteRepository.getReferenceById(dados.id());
+        var cliente = clientRepository.getReferenceById(dados.id());
         if (cliente.equals(null)) throw new EntityNotFoundException();
         cliente.atualizarDados(dados);
 
     }
 
     public void excluirCliente(Long id) throws EntityNotFoundException {
-        var cliente = clienteRepository.getReferenceById(id);
+        var cliente = clientRepository.getReferenceById(id);
         if (cliente.equals(null)) throw new EntityNotFoundException();
         cliente.setAtivo(false);
     }

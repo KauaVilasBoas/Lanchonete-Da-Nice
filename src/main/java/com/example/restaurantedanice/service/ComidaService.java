@@ -1,10 +1,11 @@
 package com.example.restaurantedanice.service;
 
-import com.example.restaurantedanice.domain.comida.*;
-import com.example.restaurantedanice.domain.comida.dtos.AtualizacaoComidaDTO;
-import com.example.restaurantedanice.domain.comida.dtos.CadastroComidaDTO;
-import com.example.restaurantedanice.domain.comida.dtos.DetalhamentoComidaDTO;
-import com.example.restaurantedanice.domain.comida.dtos.ListagemComidaDTO;
+import com.example.restaurantedanice.application.food.FoodUpdateDTO;
+import com.example.restaurantedanice.application.food.FoodCreateDTO;
+import com.example.restaurantedanice.application.food.FoodDetailDTO;
+import com.example.restaurantedanice.application.food.FoodListDTO;
+import com.example.restaurantedanice.infra.food.Food;
+import com.example.restaurantedanice.infra.food.FoodRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,35 +18,35 @@ import org.springframework.transaction.annotation.Transactional;
 public class ComidaService {
 
     @Autowired
-    private ComidaRepository repository;
+    private FoodRepository repository;
 
     //C.R.U.D
 
-    public DetalhamentoComidaDTO cadastrarComida(CadastroComidaDTO dados){
+    public FoodDetailDTO cadastrarComida(FoodCreateDTO dados){
 
-        var comida = new Comida(dados);
+        var comida = new Food(dados);
         repository.save(comida);
-        var dadosDetalhamentoComida = new DetalhamentoComidaDTO(comida);
+        var dadosDetalhamentoComida = new FoodDetailDTO(comida);
         return dadosDetalhamentoComida;
 
     }
 
-    public Page<ListagemComidaDTO> listarComidas(Pageable pageable){
+    public Page<FoodListDTO> listarComidas(Pageable pageable){
 
-        var page = repository.findAllByAtivoTrue(pageable).map(ListagemComidaDTO::new);
+        var page = repository.findAllByAtivoTrue(pageable).map(FoodListDTO::new);
         return page;
 
     }
 
-    public DetalhamentoComidaDTO detalharComida(Long id){
+    public FoodDetailDTO detalharComida(Long id){
 
         var comida = repository.getReferenceById(id);
-        var dadosDetalhamentoComida = new DetalhamentoComidaDTO(comida);
+        var dadosDetalhamentoComida = new FoodDetailDTO(comida);
         return dadosDetalhamentoComida;
 
     }
 
-    public void atualizarComida(AtualizacaoComidaDTO dados){
+    public void atualizarComida(FoodUpdateDTO dados){
 
         var comida = repository.getReferenceById(dados.id());
         comida.atualizarDados(dados);

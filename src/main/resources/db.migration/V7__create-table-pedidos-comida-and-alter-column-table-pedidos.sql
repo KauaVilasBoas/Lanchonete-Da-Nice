@@ -1,2 +1,2 @@
 ALTER TABLE pedidos
-    RENAME COLUMN pedidos_comida TO comida
+    RENAME COLUMN pedidos_comida TO food

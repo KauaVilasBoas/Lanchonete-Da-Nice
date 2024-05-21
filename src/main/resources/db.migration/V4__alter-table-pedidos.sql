@@ -1,2 +1,2 @@
 alter table pedidos
-RENAME cliente TO cliente_id
+RENAME client TO cliente_id

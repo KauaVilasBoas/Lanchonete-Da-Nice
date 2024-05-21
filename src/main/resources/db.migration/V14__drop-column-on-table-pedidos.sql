@@ -1,2 +1,2 @@
 ALTER TABLE pedidos
-DROP COLUMN comida
+DROP COLUMN food
