@@ -3,11 +3,10 @@ package com.example.restaurantedanice.domain.order;
 import com.example.restaurantedanice.infra.client.Client;
 import com.example.restaurantedanice.infra.food.Food;
 import com.example.restaurantedanice.infra.order.Status;
-import org.aspectj.weaver.ast.Or;
 
 import java.time.LocalDateTime;
 import java.util.List;
-public class Order implements OrderFactory{
+public class IOrder {
 
     private Long id;
     private Client client;
@@ -17,7 +16,7 @@ public class Order implements OrderFactory{
     private boolean active;
     private Double totalPrice;
 
-    public Order(Client client, List<Food> comidasList) {
+    public IOrder(Client client, List<Food> comidasList) {
 
         this.client = client;
         this.foods = comidasList;
@@ -28,11 +27,5 @@ public class Order implements OrderFactory{
 
     }
 
-    @Override
-    public Order create(Client client, List<Food> comidasList) {
-        // adicionar validações de criação
-        Order order = new Order(client, comidasList);
 
-        return order;
-    }
 }

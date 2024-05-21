@@ -5,8 +5,12 @@ import com.example.restaurantedanice.infra.food.Food;
 
 import java.util.List;
 
-public interface OrderFactory {
+public class OrderFactory implements IOrderFactory{
+    @Override
+    public IOrder create(Client client, List<Food> comidasList) {
+        // adicionar validações de criação
+        IOrder order = new IOrder(client, comidasList);
 
-    public Order create(Client client, List<Food> comidasList);
-
+        return order;
+    }
 }
