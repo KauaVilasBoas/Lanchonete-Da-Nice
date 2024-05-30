@@ -3,15 +3,11 @@ package com.example.restaurantedanice.domain.comida;
 import com.example.restaurantedanice.domain.comida.dtos.AtualizacaoComidaDTO;
 import com.example.restaurantedanice.domain.comida.dtos.CadastroComidaDTO;
 import jakarta.persistence.*;
-import lombok.*;
+
+import java.util.Objects;
 
 @Table(name = "comidas")
 @Entity(name = "Comida")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class Comida {
 
     @Id
@@ -42,5 +38,68 @@ public class Comida {
         }
 
 
+    }
+
+    public Comida(String titulo, String imagem, Double preco, boolean ativo) {
+        this.titulo = titulo;
+        this.imagem = imagem;
+        this.preco = preco;
+        this.ativo = ativo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comida comida = (Comida) o;
+        return Objects.equals(id, comida.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    public Comida() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }
